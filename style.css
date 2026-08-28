@@ -1,0 +1,420 @@
+/* ==============================================================
+   VARIÁVEIS DE COR
+   Se quiser mudar a paleta de cores da página inteira, troque só
+   os valores aqui em cima. Todo o resto do CSS usa essas variáveis.
+================================================================= */
+:root {
+  --bg: #0B0E14;              /* fundo geral da página */
+  --surface: #12161F;         /* fundo dos cards/pills */
+  --surface-alt: #1A2030;     /* fundo das fotos laterais e imagens de projeto */
+  --border: rgba(255, 255, 255, 0.08);
+  --text-primary: #E4E7EE;
+  --text-secondary: #8B93A7;
+  --accent: #FF6B4A;          /* cor de destaque (coral) */
+  --accent-secondary: #3ECF8E;/* cor secundária (verde-água), se quiser usar */
+
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'JetBrains Mono', monospace;
+}
+
+/* ==============================================================
+   RESET BÁSICO
+================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Foco visível pra quem navega pelo teclado (acessibilidade) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+.icon--sm {
+  width: 13px;
+  height: 13px;
+}
+
+/* ==============================================================
+   HERO (topo com as 3 fotos)
+================================================================= */
+.hero {
+  padding: 72px 24px 48px;
+  text-align: center;
+}
+
+.photos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 280px; /* controla o espaço reservado pras fotos */
+  margin-bottom: 32px;
+}
+
+.photo {
+  object-fit: cover;
+  border-radius: 16px;
+  background: var(--surface-alt); /* aparece enquanto a foto carrega */
+}
+
+.photo--main {
+  width: 220px;
+  height: 220px;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 8px var(--bg); /* "respiro" entre a foto principal e as de trás */
+  z-index: 2; /* garante que ela fique por cima das laterais */
+  position: relative;
+}
+
+.photo--side {
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--border);
+  opacity: 0.9;
+}
+
+.photo--left {
+  transform: rotate(-8deg) translateX(36px);
+}
+
+.photo--right {
+  transform: rotate(8deg) translateX(-36px);
+}
+
+.hero__name {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.hero__title {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+/* ---- Animação de entrada das fotos (sobem e aparecem) ---- */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* A foto principal já tem transform fixo (nenhum), então a animação
+   só mexe em opacity/translateY. Já as fotos laterais têm rotação +
+   translateX fixos: por isso a animação delas usa a mesma técnica,
+   mas combinando os dois com uma variável de transform final
+   (ver as classes .photo--left/.photo--right acima: o navegador
+   aplica a rotação/translateX como estado final da animação). */
+.photo--main {
+  animation: riseIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.photo--left {
+  animation: riseInLeft 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
+}
+.photo--right {
+  animation: riseInRight 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
+}
+
+@keyframes riseInLeft {
+  from { opacity: 0; transform: rotate(-8deg) translateX(36px) translateY(32px); }
+  to   { opacity: 1; transform: rotate(-8deg) translateX(28px) translateY(0); }
+}
+@keyframes riseInRight {
+  from { opacity: 0; transform: rotate(8deg) translateX(-36px) translateY(32px); }
+  to   { opacity: 1; transform: rotate(8deg) translateX(-36px) translateY(0); }
+}
+
+/* Respeita quem tem a opção "reduzir movimento" ativada no sistema */
+@media (prefers-reduced-motion: reduce) {
+  .photo--main,
+  .photo--left,
+  .photo--right {
+    animation: none;
+  }
+}
+
+/* ==============================================================
+   LINKS DE CONTATO (email, LinkedIn, GitHub)
+================================================================= */
+.contact-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  transition: border-color 0.15s ease;
+}
+
+.contact-pill:hover {
+  border-color: var(--accent);
+}
+
+.contact-pill .icon {
+  color: var(--accent);
+}
+
+/* ==============================================================
+   SEÇÕES (sobre, objetivos, projetos, skills)
+================================================================= */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+}
+
+.section__eyebrow {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.section__text {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 56ch; /* linhas de texto mais curtas = mais fácil de ler */
+}
+
+/* ==============================================================
+   PROJETOS
+================================================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas no desktop */
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-card__image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--surface-alt); /* aparece enquanto a imagem carrega */
+  margin-bottom: 12px;
+}
+
+.project-card__title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.project-card__stack {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.project-card__links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.project-link--main {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.project-link--code {
+  color: var(--text-secondary);
+  transition: color 0.15s ease;
+}
+.project-link--code:hover {
+  color: var(--text-primary);
+}
+
+/* ==============================================================
+   SKILLS
+================================================================= */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.skill-tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+/* ==============================================================
+   RODAPÉ
+================================================================= */
+.footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer__cta {
+  color: var(--accent);
+  font-size: 15px;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* Botão "voltar ao topo": fica escondido até o script.js
+   adicionar a classe "is-visible" (depois que a pessoa rola a página) */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+}
+
+/* ==============================================================
+   RESPONSIVIDADE
+   Abaixo de 768px (tablets e celulares maiores)
+================================================================= */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* projetos empilham em 1 coluna */
+  }
+}
+
+/* Abaixo de 480px (celulares) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 56px 16px 40px;
+  }
+
+  .photos {
+    height: 160px;
+  }
+
+  /* fotos menores e mais próximas, senão não cabe na tela */
+  .photo--main {
+    width: 120px;
+    height: 120px;
+  }
+
+  .photo--side {
+    width: 84px;
+    height: 84px;
+  }
+
+  .photo--left {
+    transform: rotate(-8deg) translateX(16px);
+  }
+  .photo--right {
+    transform: rotate(8deg) translateX(-16px);
+  }
+  @keyframes riseInLeft {
+    from { opacity: 0; transform: rotate(-8deg) translateX(16px) translateY(32px); }
+    to   { opacity: 1; transform: rotate(-8deg) translateX(16px) translateY(0); }
+  }
+  @keyframes riseInRight {
+    from { opacity: 0; transform: rotate(8deg) translateX(-16px) translateY(32px); }
+    to   { opacity: 1; transform: rotate(8deg) translateX(-16px) translateY(0); }
+  }
+
+  .hero__name {
+    font-size: 22px;
+  }
+
+  .contact-pill {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  main {
+    padding: 0 16px;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+}
