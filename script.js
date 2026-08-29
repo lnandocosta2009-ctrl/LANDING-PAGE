@@ -28,3 +28,18 @@ btnTopo.addEventListener('click', () => {
 // Quer adicionar mais interações depois (ex: menu, formulário de
 // contato, modo claro/escuro)? Pode escrever o código aqui embaixo.
 // ==================================================================
+
+const revealEls = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target); // anima só uma vez
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+revealEls.forEach((el) => revealObserver.observe(el));

@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
   <!-- Arquivo de estilos (precisa estar na mesma pasta que este HTML) -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
@@ -80,7 +80,7 @@
          SEÇÃO 01: SOBRE MIM
          Troque o texto de dentro do <p> pela sua apresentação.
     =========================================================== -->
-    <section class="section" id="sobre">
+    <section class="section reveal" id="sobre">
       <p class="section__eyebrow">01 · sobre mim</p>
       <p class="section__text">
         Tenho 17 anos, curso o 2º ano do Ensino Médio junto ao Técnico em Informática na Escola Raphael Di Santo Garcia. Sou dedicado, gosto de tecnologia e tenho grandes sonhos e objetivos que busco conquistar com esforço e determinação.
@@ -91,7 +91,7 @@
          SEÇÃO 02: OBJETIVOS
          Troque o texto de dentro do <p> pelos seus objetivos.
     =========================================================== -->
-    <section class="section" id="objetivos">
+    <section class="section reveal" id="objetivos">
       <p class="section__eyebrow">02 · objetivos</p>
       <p class="section__text">
         Meu objetivo é crescer na área de desenvolvimento, adquirindo cada vez mais experiência e conhecimento para me tornar um profissional excelente. Busco minha primeira oportunidade no mercado de trabalho para colocar meus conhecimentos em prática, aprender com novos desafios e evoluir continuamente, contribuindo com dedicação e responsabilidade para a empresa e construindo uma carreira sólida na área de tecnologia.
@@ -110,22 +110,22 @@
          - href do link "Ver projeto" -> link do Vercel/Netlify (site no ar)
          - href do ícone do GitHub -> link do repositório
     =========================================================== -->
-    <section class="section" id="projetos">
+    <section class="section reveal" id="projetos">
       <p class="section__eyebrow">03 · projetos</p>
 
       <div class="projects-grid">
 
         <!-- PROJETO 1 -->
         <article class="project-card">
-          <img src="fotos/projeto-1.jpg" alt="Print do projeto 1" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">Nome do projeto</h3>
+          <img src="./img/projeto CSS + HTML.PNG" alt="Print do projeto 1" loading="lazy" class="project-card__image">
+          <h3 class="project-card__title">Conhecimento CSS + HTML</h3>
           <p class="project-card__stack">HTML · CSS · JavaScript</p>
           <div class="project-card__links">
-            <a href="https://seu-projeto.vercel.app" target="_blank" rel="noopener" class="project-link project-link--main">
+            <a href="https://vercel.com/luiz-fernando-de-oliveira-costa/primeiro-projeto" target="_blank" rel="noopener" class="project-link project-link--main">
               Ver projeto
               <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <a href="https://github.com/seu-usuario/projeto-1" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
+            <a href="https://github.com/lnandocosta2009-ctrl/Primeiro-Projeto" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
             </a>
           </div>
@@ -144,7 +144,39 @@
             <a href="https://github.com/seu-usuario/projeto-2" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
             </a>
-          </div>
+          </wdiv>
+        </article>
+
+        <!--Projeto 3-->
+         <article class="project-card">
+          <img src="fotos/projeto-3.jpg" alt="Print do projeto 2" loading="lazy" class="project-card__image">
+          <h3 class="project-card__title">Nome do projeto</h3>
+          <p class="project-card__stack">Node.js · API</p>
+          <div class="project-card__links">
+            <a href="https://seu-projeto-2.vercel.app" target="_blank" rel="noopener" class="project-link project-link--main">
+              Ver projeto
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+            <a href="https://github.com/seu-usuario/projeto-2" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+            </a>
+          </wdiv>
+        </article>
+
+        <!--Projeto 4-->
+         <article class="project-card">
+          <img src="fotos/projeto-4.jpg" alt="Print do projeto 2" loading="lazy" class="project-card__image">
+          <h3 class="project-card__title">Nome do projeto</h3>
+          <p class="project-card__stack">Node.js · API</p>
+          <div class="project-card__links">
+            <a href="https://seu-projeto-2.vercel.app" target="_blank" rel="noopener" class="project-link project-link--main">
+              Ver projeto
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+            <a href="https://github.com/seu-usuario/projeto-2" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+            </a>
+          </wdiv>
         </article>
 
         <!-- Para adicionar o PROJETO 3, copie um <article> inteiro
@@ -153,13 +185,8 @@
       </div>
     </section>
 
-    <!-- ==========================================================
-         SEÇÃO 04: SKILLS
-         Cada <li class="skill-tag"> é uma tecnologia/habilidade.
-         Para adicionar mais, copie uma linha <li>...</li> e cole
-         dentro da mesma <ul>, trocando o texto.
-    =========================================================== -->
-    <section class="section" id="skills">
+    
+    <section class="section reveal" id="skills">
       <p class="section__eyebrow">04 · skills</p>
       <ul class="skills-list">
         <li class="skill-tag">HTML</li>
