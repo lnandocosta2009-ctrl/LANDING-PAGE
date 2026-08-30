@@ -21,30 +21,10 @@
 </head>
 <body>
 
-  <!-- ============================================================
-       SEÇÃO HERO (topo da página)
-       As 3 fotos ficam dentro de uma pasta chamada "fotos" que você
-       cria do lado do index.html. Estrutura de pastas esperada:
-
-       seu-projeto/
-       ├── index.html
-       ├── style.css
-       ├── script.js
-       └── fotos/
-           ├── foto-principal.jpg   <- foto do meio (maior, na frente)
-           ├── foto-lateral-1.jpg   <- foto da esquerda (atrás)
-           ├── foto-lateral-2.jpg   <- foto da direita (atrás)
-           ├── projeto-1.jpg        <- print do projeto 1
-           └── projeto-2.jpg        <- print do projeto 2
-
-       Troque só o CONTEÚDO dos arquivos de foto, mantendo os nomes,
-       ou troque os nomes aqui no src="" também.
-  ============================================================= -->
   
   <header class="hero">
     <div class="photos">
-      <!-- foto da esquerda: fica atrás, levemente girada -->
-      <!-- foto principal: fica na frente, maior, com borda colorida -->
+
       <img class="photo photo--main" src="./img/foto principal.png" alt="Foto de Seu Nome">
     </div>
 
@@ -52,12 +32,7 @@
     <h1 class="hero__name">Luiz Fernando de Oliveira Costa</h1>
     <p class="hero__title"> Aprendiz Desenvolvedo Frontend</p>
 
-    <!-- ==========================================================
-         LINKS DE CONTATO
-         Troque:
-         - "seuemail@exemplo.com" pelo seu email real
-         - "seu-usuario" nos links do LinkedIn e GitHub pelo seu usuário
-    =========================================================== -->
+    
     <nav class="contact-row" aria-label="Contato e redes sociais">
       <a href="mailto: lnando.costa2009@gmail.com" class="contact-pill">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -87,10 +62,7 @@
       </p>
     </section>
 
-    <!-- ==========================================================
-         SEÇÃO 02: OBJETIVOS
-         Troque o texto de dentro do <p> pelos seus objetivos.
-    =========================================================== -->
+    
     <section class="section reveal" id="objetivos">
       <p class="section__eyebrow">02 · objetivos</p>
       <p class="section__text">
@@ -98,18 +70,6 @@
       </p>
     </section>
 
-    <!-- ==========================================================
-         SEÇÃO 03: PROJETOS
-         Cada <article class="project-card"> é UM projeto.
-         Para adicionar mais projetos, copie um bloco inteiro
-         <article>...</article> e cole embaixo, trocando o conteúdo.
-
-         Em cada card, troque:
-         - src da imagem (print do projeto)
-         - título e tecnologias usadas
-         - href do link "Ver projeto" -> link do Vercel/Netlify (site no ar)
-         - href do ícone do GitHub -> link do repositório
-    =========================================================== -->
     <section class="section reveal" id="projetos">
       <p class="section__eyebrow">03 · projetos</p>
 
@@ -121,7 +81,7 @@
           <h3 class="project-card__title">Conhecimento CSS + HTML</h3>
           <p class="project-card__stack">HTML · CSS · JavaScript</p>
           <div class="project-card__links">
-            <a href="https://vercel.com/luiz-fernando-de-oliveira-costa/primeiro-projeto" target="_blank" rel="noopener" class="project-link project-link--main">
+            <a href="https://primeiro-projeto-dusky.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
               Ver projeto
               <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
@@ -133,15 +93,15 @@
 
         <!-- PROJETO 2 -->
         <article class="project-card">
-          <img src="fotos/projeto-2.jpg" alt="Print do projeto 2" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">Nome do projeto</h3>
-          <p class="project-card__stack">Node.js · API</p>
+          <img src="./img/Formulário Interativo.PNG" alt="Print do projeto 2" loading="lazy" class="project-card__image">
+          <h3 class="project-card__title">Formulário Interativo</h3>
+          <p class="project-card__stack">HTML · CSS · JavaScript</p>
           <div class="project-card__links">
-            <a href="https://seu-projeto-2.vercel.app" target="_blank" rel="noopener" class="project-link project-link--main">
+            <a href="https://formul-rio-interativo.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
               Ver projeto
               <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <a href="https://github.com/seu-usuario/projeto-2" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
+            <a href="https://github.com/lnandocosta2009-ctrl/Formul-rio-interativo" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
             </a>
           </wdiv>
@@ -192,8 +152,8 @@
         <li class="skill-tag">HTML</li>
         <li class="skill-tag">CSS</li>
         <li class="skill-tag">JavaScript</li>
-        <li class="skill-tag">Responsividade</li>
-        <li class="skill-tag">Git</li>
+        <li class="skill-tag">Inteligência Artificial</li>
+        <li class="skill-tag">GitHub</li>
         <li class="skill-tag">Pacote Office</li>
       </ul>
     </section>
