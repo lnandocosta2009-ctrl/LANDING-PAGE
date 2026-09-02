@@ -1,25 +1,19 @@
-/* ==============================================================
-   VARIÁVEIS DE COR
-   Se quiser mudar a paleta de cores da página inteira, troque só
-   os valores aqui em cima. Todo o resto do CSS usa essas variáveis.
-================================================================= */
+
 :root {
-  --bg: #0B0E14;              /* fundo geral da página */
-  --surface: #12161F;         /* fundo dos cards/pills */
-  --surface-alt: #1A2030;     /* fundo das fotos laterais e imagens de projeto */
+  --bg: #0B0E14;             
+  --surface: #12161F;        
+  --surface-alt: #1A2030;     
   --border: rgba(255, 255, 255, 0.08);
   --text-primary: #E4E7EE;
   --text-secondary: #8B93A7;
-  --accent: #FF6B4A;          /* cor de destaque (coral) */
-  --accent-secondary: #3ECF8E;/* cor secundária (verde-água), se quiser usar */
+  --accent: #FF6B4A;         
+  --accent-secondary: #3ECF8E;
 
   --font-body: 'Inter', sans-serif;
   --font-heading: 'JetBrains Mono', monospace;
 }
 
-/* ==============================================================
-   RESET BÁSICO
-================================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;

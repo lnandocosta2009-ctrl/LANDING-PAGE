@@ -1,5 +1,5 @@
-// ==================================================================
-// BOTÃO "VOLTAR AO TOPO"
+
+//<!-- BOTÃO "VOLTAR AO TOPO"
 // A ideia: o botão fica escondido no início da página. Depois que a
 // pessoa rola pra baixo (mais de 400px), ele aparece no canto da tela.
 // Clicando nele, a página rola suavemente de volta pro topo.
