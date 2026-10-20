@@ -4,165 +4,661 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>LANDING PAGE</title>
-  <meta name="description" content="Portfólio de Seu Nome, desenvolvedor(a) frontend. Projetos, skills e contato.">
+  <title>Luiz Fernando — Aprendiz Desenvolvedor | Portfólio LF</title>
+  <meta name="description" content="Portfólio de Luiz Fernando de Oliveira Costa, aprendiz desenvolvedor. Projetos, trajetória na TI, habilidades e contato.">
+  <meta name="author" content="Luiz Fernando de Oliveira Costa">
+  <meta name="theme-color" content="#080B09">
 
-  <!-- Fontes do Google Fonts: JetBrains Mono (títulos) + Inter (texto) -->
+  <!-- Fontes do Google Fonts: Syne (display) + Space Grotesk (headings) + Inter (corpo) + JetBrains Mono (código/técnico) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  <!-- Arquivo de estilos (precisa estar na mesma pasta que este HTML) -->
+  <!-- Arquivo de estilos -->
   <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body class="is-loading">
 
-  
-  <header class="hero">
-    <div class="photos">
+  <!-- CURSOR INTERATIVO (Inspirado no conceito da Cartier) -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-label" id="cursorLabel"></span>
+    </div>
+  </div>
 
-      <img class="photo photo--main" src="./img/foto principal.png" alt="Foto de Seu Nome">
+  <!-- SISTEMA DE FUNDO DINÂMICO COM DEGRADÊS E ILUMINAÇÃO (Inspirado no Belgrade Arbor) -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="ambient-glow ambient-glow--1" id="glow1"></div>
+    <div class="ambient-glow ambient-glow--2" id="glow2"></div>
+    <div class="ambient-glow ambient-glow--3" id="glow3"></div>
+    <div class="ambient-grid"></div>
+    <div class="ambient-noise"></div>
+  </div>
+
+  <!-- INTRODUÇÃO CINEMATOGRÁFICA LF (Inspirada na entrada do Lando Norris) -->
+  <div id="introScreen" class="intro-screen" role="dialog" aria-modal="true" aria-label="Abertura cinematográfica LF">
+    <div class="intro-bg-glow" aria-hidden="true"></div>
+    <div class="intro-container">
+      <div class="intro-monogram-box">
+        <span class="intro-glitch-layer intro-glitch--1" aria-hidden="true">LF</span>
+        <span class="intro-glitch-layer intro-glitch--2" aria-hidden="true">LF</span>
+        <h1 class="intro-monogram">LF</h1>
+      </div>
+      <div class="intro-meta">
+        <p class="intro-tagline">LUIZ FERNANDO · DEVELOPER</p>
+        <div class="intro-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="intro-progress-fill" id="introProgressFill"></div>
+        </div>
+        <div class="intro-counter-row">
+          <span class="intro-sys-status">SYS // INICIALIZANDO INTERFACE</span>
+          <span class="intro-counter-number" id="introCounter">0%</span>
+        </div>
+      </div>
+    </div>
+    <button id="introSkipBtn" class="intro-skip-button" aria-label="Pular animação de abertura">
+      <span>Pular</span>
+      <kbd>ESC</kbd>
+    </button>
+  </div>
+
+  <!-- CABEÇALHO / NAVEGAÇÃO -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#hero" class="brand-logo" aria-label="Voltar ao início">
+        <span class="brand-monogram">LF</span>
+        <span class="brand-pulse" aria-hidden="true"></span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="#sobre" class="nav-link"><span class="nav-num">01</span> Sobre</a></li>
+          <li><a href="#trajetoria" class="nav-link"><span class="nav-num">02</span> Trajetória</a></li>
+          <li><a href="#objetivos" class="nav-link"><span class="nav-num">03</span> Objetivos</a></li>
+          <li><a href="#projetos" class="nav-link"><span class="nav-num">04</span> Projetos</a></li>
+          <li><a href="#skills" class="nav-link"><span class="nav-num">05</span> Skills</a></li>
+          <li><a href="#contato" class="nav-link"><span class="nav-num">06</span> Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="status-pill" title="Disponível para novas oportunidades">
+          <span class="status-dot"></span>
+          <span class="status-label">Disponível</span>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="siteNav">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Linha de progresso da rolagem global -->
+    <div class="scroll-progress-line" id="scrollProgressLine" aria-hidden="true"></div>
+  </header>
+
+  <!-- HERO — APRESENTAÇÃO PRINCIPAL -->
+  <section class="hero" id="hero">
+    <!-- Grafismos estilo Lando Norris que saltam da página -->
+    <div class="hero-doodles" aria-hidden="true">
+      <!-- Seta desenhada à mão -->
+      <svg class="doodle doodle--arrow" viewBox="0 0 140 100" fill="none">
+        <path d="M10 20 C 45 10, 95 25, 110 70 M 110 70 L 85 62 M 110 70 L 105 45" stroke="#50E3A4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="12" y="15" fill="#50E3A4" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">ROLE PARA EXPLORAR</text>
+      </svg>
+      <!-- Estrelas e pontos de luz -->
+      <svg class="doodle doodle--sparkle-1" viewBox="0 0 40 40">
+        <path d="M20 0 L23 15 L38 20 L23 25 L20 40 L17 25 L2 20 L17 15 Z" fill="#50E3A4"/>
+      </svg>
+      <svg class="doodle doodle--sparkle-2" viewBox="0 0 30 30">
+        <path d="M15 0 L17 11 L28 15 L17 19 L15 30 L13 19 L2 15 L13 11 Z" fill="#168653"/>
+      </svg>
+      <!-- Mira técnica e coordenadas -->
+      <div class="doodle doodle--crosshair">
+        <span>+</span>
+        <span class="crosshair-coord">23°S / 47°W</span>
+      </div>
+      <div class="doodle doodle--badge">
+        <span>DEV // 2026</span>
+      </div>
     </div>
 
-    
-    <h1 class="hero__name">Luiz Fernando de Oliveira Costa</h1>
-    <p class="hero__title"> Aprendiz desenvolvedor Frontend</p>
+    <div class="hero-container">
+      <!-- Composição editorial da fotografia com enquadramento elevado -->
+      <div class="photos">
+        <div class="photo-composition" data-tilt>
+          <div class="photo-glow" aria-hidden="true"></div>
+          <div class="photo-frame">
+            <img class="photo photo--main" src="./img/foto principal.png" alt="Foto de Luiz Fernando de Oliveira Costa" width="280" height="280">
+            <div class="photo-sheen" aria-hidden="true"></div>
+            <!-- Grafismos técnicos sobre a foto -->
+            <div class="photo-corner photo-corner--tl"></div>
+            <div class="photo-corner photo-corner--br"></div>
+            <div class="photo-tech-tag">PORTFOLIO // LF</div>
+          </div>
+        </div>
+      </div>
 
-    
-    <nav class="contact-row" aria-label="Contato e redes sociais">
-      <a href="mailto: lnando.costa2009@gmail.com" class="contact-pill">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-        Email
+      <!-- Textos principais do Hero -->
+      <div class="hero-headline">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-accent">[ 00 ]</span>
+          <span class="eyebrow-text">BEM-VINDO AO MEU UNIVERSO DIGITAL</span>
+        </div>
+        <h1 class="hero__name">
+          <span class="hero__name-line">Luiz Fernando</span>
+          <span class="hero__name-line hero__name-line--accent">de Oliveira Costa</span>
+        </h1>
+        <p class="hero__title">Aprendiz desenvolvedor </p>
+      </div>
+
+      <!-- Links de contato preservados integralmente -->
+      <nav class="contact-row" aria-label="Contato e redes sociais">
+        <a href="mailto:lnando.costa2009@gmail.com" class="contact-pill" data-cursor-text="EMAIL">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/luiz-fernando-costa-449b37366/" target="_blank" rel="noopener" class="contact-pill" data-cursor-text="LINKEDIN">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/lnandocosta2009-ctrl" target="_blank" rel="noopener" class="contact-pill" data-cursor-text="GITHUB">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </nav>
+
+      <!-- Indicador sutil de rolagem -->
+      <a href="#sobre" class="hero-scroll-cue" aria-label="Rolar para a seção sobre mim">
+        <span class="scroll-cue-text">EXPLORAR</span>
+        <div class="scroll-cue-mouse">
+          <div class="scroll-cue-wheel"></div>
+        </div>
       </a>
-      <a href="https://www.linkedin.com/in/luiz-fernando-costa-449b37366/" target="_blank" rel="noopener" class="contact-pill">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/lnandocosta2009-ctrl" target="_blank" rel="noopener" class="contact-pill">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
-        GitHub
-      </a>
-    </nav>
-  </header>
+    </div>
+  </section>
 
   <main>
 
-    <!--Sobre mim-->
-    <section class="section reveal" id="sobre">
-      <p class="section__eyebrow">01 · sobre mim</p>
-      <p class="section__text">
-        Tenho 17 anos, curso o 2º ano do Ensino Médio junto ao Técnico em Informática na Escola Raphael Di Santo Garcia. Sou dedicado, gosto de tecnologia e tenho grandes sonhos e objetivos que busco conquistar com esforço e determinação.
-      </p>
-    </section>
+    <!-- SEÇÃO SOBRE MIM -->
+    <section class="section section--about reveal" id="sobre">
+      <div class="section-badge">
+        <span class="section__eyebrow">01 · sobre mim</span>
+        <span class="badge-line"></span>
+      </div>
 
-    
-    <section class="section reveal" id="objetivos">
-      <p class="section__eyebrow">02 · objetivos</p>
-      <p class="section__text">
-        Meu objetivo é crescer na área de desenvolvimento, adquirindo cada vez mais experiência e conhecimento para me tornar um profissional excelente. Busco minha primeira oportunidade no mercado de trabalho para colocar meus conhecimentos em prática, aprender com novos desafios e evoluir continuamente, contribuindo com dedicação e responsabilidade para a empresa e construindo uma carreira sólida na área de tecnologia.
-      </p>
-    </section>
-
-    <section class="section reveal" id="projetos">
-      <p class="section__eyebrow">03 · projetos</p>
-
-      <div class="projects-grid">
-
-        <!-- PROJETO 1 -->
-        <article class="project-card">
-          <img src="./img/projeto1.PNG" alt="Print do projeto 1" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">Conhecimento CSS + HTML</h3>
-          <p class="project-card__stack">HTML · CSS · JavaScript</p>
-          <div class="project-card__links">
-            <a href="https://primeiro-projeto-dusky.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
-              Ver projeto
-              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            <a href="https://github.com/lnandocosta2009-ctrl/Primeiro-Projeto" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
-            </a>
+      <div class="about-grid">
+        <div class="about-statement-box">
+          <p class="section__text about-lead">
+            Tenho 17 anos, curso o 2º ano do Ensino Médio junto ao Técnico em Informática na Escola Raphael Di Santo Garcia. Sou dedicado, gosto de tecnologia e tenho grandes sonhos e objetivos que busco conquistar com esforço e determinação.
+          </p>
+          <div class="about-micro-details">
+            <div class="micro-stat">
+              <span class="micro-stat-number">17</span>
+              <span class="micro-stat-desc">Anos de idade</span>
+            </div>
+            <div class="micro-stat">
+              <span class="micro-stat-number">2º</span>
+              <span class="micro-stat-desc">Ano EM + Técnico TI</span>
+            </div>
+            <div class="micro-stat">
+              <span class="micro-stat-number">Escola</span>
+              <span class="micro-stat-desc">Raphael Di Santo Garcia</span>
+            </div>
           </div>
-        </article>
+        </div>
 
-        <!-- PROJETO 2 -->
-        <article class="project-card">
-          <img src="./img/Formulário Interativo.PNG" alt="Print do projeto 2" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">Formulário Interativo (com validação)</h3>
-          <p class="project-card__stack">HTML · CSS · JavaScript</p>
-          <div class="project-card__links">
-            <a href="https://formul-rio-interativo.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
-              Ver projeto
-              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            <a href="https://github.com/lnandocosta2009-ctrl/Formul-rio-interativo" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
-            </a>
-          </wdiv>
-        </article>
-
-        <!--Projeto 3-->
-         <article class="project-card">
-          <img src="./img/calculadora.PNG" alt="Print do projeto 2" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">Calculadora</h3>
-          <p class="project-card__stack">HTML · CSS · JavaScript</p>
-          <div class="project-card__links">
-            <a href="https://calculadora-red-gamma.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
-              Ver projeto
-              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            <a href="https://github.com/lnandocosta2009-ctrl/Calculadora" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
-            </a>
-          </wdiv>
-        </article>
-
-      
-         <article class="project-card">
-          <img src="./img/WM computer House.PNG" alt="Print do projeto 2" loading="lazy" class="project-card__image">
-          <h3 class="project-card__title">WM Computer House</h3>
-          <p class="project-card__stack">Primeiro site comercial para uma loja de informática</p>
-          <p class="project-card__stack">HTML · CSS · JavaScript</p>
-          <div class="project-card__links">
-            <a href="https://wm-computer-house.vercel.app/" target="_blank" rel="noopener" class="project-link project-link--main">
-              Ver projeto
-              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
-            </a>
-            <a href="https://github.com/lnandocosta2009-ctrl/wm-computer-house" target="_blank" rel="noopener" class="project-link project-link--code" aria-label="Ver código no GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
-            </a>
-          </wdiv>
-        </article>
-    
+        <div class="about-graphic-card" data-tilt>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="about-graphic-header">
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-title">perfil.config.ts</span>
+          </div>
+          <div class="about-code-snippet">
+            <code>
+              <span class="code-kw">const</span> <span class="code-var">desenvolvedor</span> = {<br>
+              &nbsp;&nbsp;<span class="code-prop">nome</span>: <span class="code-str">"Luiz Fernando"</span>,<br>
+              &nbsp;&nbsp;<span class="code-prop">foco</span>: <span class="code-str">"Desenvolvedor"</span>,<br>
+              &nbsp;&nbsp;<span class="code-prop">paixao</span>: <span class="code-str">"Tecnologia &amp; Código"</span>,<br>
+              &nbsp;&nbsp;<span class="code-prop">mindset</span>: <span class="code-str">"Dedicação &amp; Evolução"</span><br>
+              };
+            </code>
+          </div>
+          <div class="about-graphic-doodle" aria-hidden="true">
+            <svg viewBox="0 0 80 40" fill="none">
+              <path d="M5 25 Q 40 5, 75 25" stroke="#50E3A4" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+        </div>
       </div>
     </section>
 
-    
-    <section class="section reveal" id="skills">
-      <p class="section__eyebrow">04 · skills</p>
-      <ul class="skills-list">
-        <li class="skill-tag">HTML</li>
-        <li class="skill-tag">CSS</li>
-        <li class="skill-tag">JavaScript</li>
-        <li class="skill-tag">Python</li>
-        <li class="skill-tag">Inteligência Artificial</li>
-        <li class="skill-tag">Git/GitHub</li>
-        <li class="skill-tag">Pacote Office</li>
+    <!-- NOVA SEÇÃO: LINHA DO TEMPO DA MINHA EVOLUÇÃO NA TI -->
+    <section class="section section--timeline reveal" id="trajetoria">
+      <div class="section-badge">
+        <span class="section__eyebrow">02 · trajetória na ti</span>
+        <span class="badge-line"></span>
+      </div>
+
+      <div class="section-title-wrap">
+        <h2 class="section__title">Minha Evolução Tecnológica</h2>
+        <p class="section__subtitle">A jornada cronológica do meu aprendizado contínuo</p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <!-- Linha vertical central que se desenha com o scroll -->
+        <div class="timeline-track" aria-hidden="true">
+          <div class="timeline-track-fill" id="timelineTrackFill"></div>
+        </div>
+
+        <div class="timeline-items">
+
+          <!-- 2023 -->
+          <article class="timeline-item" data-timeline-year="2023">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="marker-pulse"></span>
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year-tag">2023</div>
+              <h3 class="timeline-heading">O início do interesse</h3>
+              <p class="timeline-body">
+                Comecei a me interessar por tecnologia e a explorar as possibilidades dessa área.
+              </p>
+              <div class="timeline-meta-label">DESCOBERTA &amp; CURIOSIDADE</div>
+            </div>
+          </article>
+
+          <!-- 2024 -->
+          <article class="timeline-item" data-timeline-year="2024">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="marker-pulse"></span>
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year-tag">2024</div>
+              <h3 class="timeline-heading">Primeiros contatos com programação</h3>
+              <p class="timeline-body">
+                Comecei a mexer um pouco com códigos e a conhecer melhor o desenvolvimento de software.
+              </p>
+              <div class="timeline-meta-label">PRIMEIROS CÓDIGOS &amp; LÓGICA</div>
+            </div>
+          </article>
+
+          <!-- 2025 -->
+          <article class="timeline-item" data-timeline-year="2025">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="marker-pulse"></span>
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year-tag">2025</div>
+              <h3 class="timeline-heading">Formação técnica</h3>
+              <p class="timeline-body">
+                Entrei no curso técnico de Informática, iniciando uma etapa mais estruturada da minha formação na área.
+              </p>
+              <div class="timeline-meta-label">BASE ESTRUTURADA &amp; TEORIA</div>
+            </div>
+          </article>
+
+          <!-- 2026 -->
+          <article class="timeline-item" data-timeline-year="2026">
+            <div class="timeline-marker" aria-hidden="true">
+              <span class="marker-pulse"></span>
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year-tag">2026</div>
+              <h3 class="timeline-heading">Evolução e continuidade</h3>
+              <p class="timeline-body">
+                Estou terminando o segundo ano do curso técnico de TI, ampliando meus conhecimentos e desenvolvendo projetos.
+              </p>
+              <div class="timeline-meta-label">PROJETOS REAIS &amp; CONSTÂNCIA</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO OBJETIVOS -->
+    <section class="section section--objectives reveal" id="objetivos">
+      <div class="section-badge">
+        <span class="section__eyebrow">03 · objetivos</span>
+        <span class="badge-line"></span>
+      </div>
+
+      <div class="objectives-card" data-tilt>
+        <div class="objectives-quote-symbol" aria-hidden="true">“</div>
+        <p class="section__text objectives-lead">
+          Meu objetivo é crescer na área de desenvolvimento, adquirindo cada vez mais experiência e conhecimento para me tornar um profissional excelente. Busco minha primeira oportunidade no mercado de trabalho para colocar meus conhecimentos em prática, aprender com novos desafios e evoluir continuamente, contribuindo com dedicação e responsabilidade para a empresa e construindo uma carreira sólida na área de tecnologia.
+        </p>
+        <div class="objectives-footer">
+          <div class="objectives-pill">
+            <span class="pill-dot"></span>
+            <span>PRIMEIRA OPORTUNIDADE PROFISSIONAL</span>
+          </div>
+          <div class="objectives-meta-tech">LUIZ FERNANDO // META DE CARREIRA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE PROJETOS — APRESENTAÇÃO CINEMATOGRÁFICA INTERATIVA (1 por vez) -->
+    <section class="section section--projects" id="projetos">
+      <div class="section-badge">
+        <span class="section__eyebrow">04 · projetos</span>
+        <span class="badge-line"></span>
+      </div>
+
+      <div class="section-title-wrap">
+        <h2 class="section__title">Trabalhos em Destaque</h2>
+        <p class="section__subtitle">Apresentação imersiva dos 4 projetos desenvolvidos</p>
+      </div>
+
+      <!-- CONTAINER CINEMATOGRÁFICO DE PROJETOS -->
+      <div class="cinema-container" id="cinemaContainer">
+
+        <!-- PROJETO 1 -->
+        <div class="cinema-track" data-cinema-index="0">
+          <div class="cinema-stage">
+            <article class="cinema-card">
+              <!-- Capa visual do projeto (inicia centralizada e desloca para a esquerda) -->
+              <div class="cinema-media-col">
+                <div class="cinema-image-wrapper">
+                  <img src="./img/projeto1.PNG" alt="Demonstração do projeto Conhecimento CSS + HTML" loading="lazy" class="cinema-image">
+                  <div class="cinema-image-glow" aria-hidden="true"></div>
+                  <div class="cinema-counter-badge">01 / 04</div>
+                </div>
+              </div>
+
+              <!-- Descrição que surge à direita conforme a rolagem avança -->
+              <div class="cinema-info-col">
+                <div class="cinema-info-header">
+                  <span class="cinema-tag">PROJETO // 01</span>
+                  <span class="cinema-live-indicator"><span class="live-dot"></span> ATIVO</span>
+                </div>
+                <h3 class="cinema-title">Conhecimento CSS + HTML</h3>
+                <p>Testando meus conhecimentos e minhas primeiras ideias</p>
+                <div class="cinema-stack">
+                  <span class="stack-chip">HTML</span>
+                  <span class="stack-chip">CSS</span>
+                  <span class="stack-chip">JavaScript</span>
+                </div>
+                <div class="cinema-actions">
+                  <a href="https://primeiro-projeto-dusky.vercel.app/" target="_blank" rel="noopener" class="project-btn project-btn--main" data-cursor-text="VISITAR">
+                    <span>Ver projeto</span>
+                    <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+                  </a>
+                  <a href="https://github.com/lnandocosta2009-ctrl/Primeiro-Projeto" target="_blank" rel="noopener" class="project-btn project-btn--code" aria-label="Ver código do projeto Conhecimento CSS + HTML no GitHub" data-cursor-text="CÓDIGO">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- PROJETO 2 -->
+        <div class="cinema-track" data-cinema-index="1">
+          <div class="cinema-stage">
+            <article class="cinema-card">
+              <!-- Capa visual do projeto -->
+              <div class="cinema-media-col">
+                <div class="cinema-image-wrapper">
+                  <img src="./img/Formulário Interativo.PNG" alt="Demonstração do projeto Formulário Interativo com validação" loading="lazy" class="cinema-image">
+                  <div class="cinema-image-glow" aria-hidden="true"></div>
+                  <div class="cinema-counter-badge">02 / 04</div>
+                </div>
+              </div>
+
+              <!-- Descrição -->
+              <div class="cinema-info-col">
+                <div class="cinema-info-header">
+                  <span class="cinema-tag">PROJETO // 02</span>
+                  <span class="cinema-live-indicator"><span class="live-dot"></span> ATIVO</span>
+                </div>
+                <h3 class="cinema-title">Formulário Interativo</h3>
+                <p>Projeto de tela de login com interações</p>
+                <div class="cinema-stack">
+                  <span class="stack-chip">HTML</span>
+                  <span class="stack-chip">CSS</span>
+                  <span class="stack-chip">JavaScript</span>
+                </div>
+                <div class="cinema-actions">
+                  <a href="https://formul-rio-interativo.vercel.app/" target="_blank" rel="noopener" class="project-btn project-btn--main" data-cursor-text="VISITAR">
+                    <span>Ver projeto</span>
+                    <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+                  </a>
+                  <a href="https://github.com/lnandocosta2009-ctrl/Formul-rio-interativo" target="_blank" rel="noopener" class="project-btn project-btn--code" aria-label="Ver código do projeto Formulário Interativo no GitHub" data-cursor-text="CÓDIGO">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- PROJETO 3 -->
+        <div class="cinema-track" data-cinema-index="2">
+          <div class="cinema-stage">
+            <article class="cinema-card">
+              <!-- Capa visual do projeto -->
+              <div class="cinema-media-col">
+                <div class="cinema-image-wrapper">
+                  <img src="./img/calculadora.PNG" alt="Demonstração do projeto Calculadora" loading="lazy" class="cinema-image">
+                  <div class="cinema-image-glow" aria-hidden="true"></div>
+                  <div class="cinema-counter-badge">03 / 04</div>
+                </div>
+              </div>
+
+              <!-- Descrição -->
+              <div class="cinema-info-col">
+                <div class="cinema-info-header">
+                  <span class="cinema-tag">PROJETO // 03</span>
+                  <span class="cinema-live-indicator"><span class="live-dot"></span> ATIVO</span>
+                </div>
+                <h3 class="cinema-title">Calculadora</h3>
+                <p>Testando meus conhecimentos em lógica de programação</p>
+                <div class="cinema-stack">
+                  <span class="stack-chip">HTML</span>
+                  <span class="stack-chip">CSS</span>
+                  <span class="stack-chip">JavaScript</span>
+                </div>
+                <div class="cinema-actions">
+                  <a href="https://calculadora-red-gamma.vercel.app/" target="_blank" rel="noopener" class="project-btn project-btn--main" data-cursor-text="VISITAR">
+                    <span>Ver projeto</span>
+                    <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+                  </a>
+                  <a href="https://github.com/lnandocosta2009-ctrl/Calculadora" target="_blank" rel="noopener" class="project-btn project-btn--code" aria-label="Ver código do projeto Calculadora no GitHub" data-cursor-text="CÓDIGO">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- PROJETO 4 -->
+        <div class="cinema-track" data-cinema-index="3">
+          <div class="cinema-stage">
+            <article class="cinema-card">
+              <!-- Capa visual do projeto -->
+              <div class="cinema-media-col">
+                <div class="cinema-image-wrapper">
+                  <img src="./img/WM computer House.PNG" alt="Demonstração do projeto WM Computer House" loading="lazy" class="cinema-image">
+                  <div class="cinema-image-glow" aria-hidden="true"></div>
+                  <div class="cinema-counter-badge">04 / 04</div>
+                </div>
+              </div>
+
+              <!-- Descrição -->
+              <div class="cinema-info-col">
+                <div class="cinema-info-header">
+                  <span class="cinema-tag">PROJETO // 04</span>
+                  <span class="cinema-live-indicator"><span class="live-dot"></span> ATIVO</span>
+                </div>
+                <h3 class="cinema-title">WM Computer House</h3>
+                <p class="cinema-highlight-desc">Primeiro site comercial para uma loja de informática</p>
+                <div class="cinema-stack">
+                  <span class="stack-chip">HTML</span>
+                  <span class="stack-chip">CSS</span>
+                  <span class="stack-chip">JavaScript</span>
+                </div>
+                <div class="cinema-actions">
+                  <a href="https://wm-computer-house.vercel.app/" target="_blank" rel="noopener" class="project-btn project-btn--main" data-cursor-text="VISITAR">
+                    <span>Ver projeto</span>
+                    <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17L17 7M9 7h8v8"/></svg>
+                  </a>
+                  <a href="https://github.com/lnandocosta2009-ctrl/wm-computer-house" target="_blank" rel="noopener" class="project-btn project-btn--code" aria-label="Ver código do projeto WM Computer House no GitHub" data-cursor-text="CÓDIGO">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO SKILLS -->
+    <section class="section section--skills reveal" id="skills">
+      <div class="section-badge">
+        <span class="section__eyebrow">05 · skills</span>
+        <span class="badge-line"></span>
+      </div>
+
+      <div class="section-title-wrap">
+        <h2 class="section__title">Habilidades &amp; Ferramentas</h2>
+        <p class="section__subtitle">Tecnologias que fazem parte da minha rotina de estudo e desenvolvimento</p>
+      </div>
+
+      <ul class="skills-grid" aria-label="Lista de habilidades">
+        <!-- 1. HTML -->
+        <li class="skill-card" data-tilt data-cursor-text="HTML">
+          <div class="skill-card-inner">
+            <span class="skill-number">01</span>
+            <div class="skill-info">
+              <h3 class="skill-name">HTML</h3>
+              <span class="skill-sub">Semântica &amp; Estrutura</span>
+            </div>
+          </div>
+        </li>
+        <!-- 2. CSS -->
+        <li class="skill-card" data-tilt data-cursor-text="CSS">
+          <div class="skill-card-inner">
+            <span class="skill-number">02</span>
+            <div class="skill-info">
+              <h3 class="skill-name">CSS</h3>
+              <span class="skill-sub">Layouts, Flex, Grid &amp; Animações</span>
+            </div>
+          </div>
+        </li>
+        <!-- 3. JavaScript -->
+        <li class="skill-card" data-tilt data-cursor-text="JS">
+          <div class="skill-card-inner">
+            <span class="skill-number">03</span>
+            <div class="skill-info">
+              <h3 class="skill-name">JavaScript</h3>
+              <span class="skill-sub">Lógica &amp; Interatividade DOM</span>
+            </div>
+          </div>
+        </li>
+        <!-- 4. Python -->
+        <li class="skill-card" data-tilt data-cursor-text="PYTHON">
+          <div class="skill-card-inner">
+            <span class="skill-number">04</span>
+            <div class="skill-info">
+              <h3 class="skill-name">Python</h3>
+              <span class="skill-sub">Fundamentos &amp; Automação</span>
+            </div>
+          </div>
+        </li>
+        <!-- 5. Inteligência Artificial -->
+        <li class="skill-card" data-tilt data-cursor-text="IA">
+          <div class="skill-card-inner">
+            <span class="skill-number">05</span>
+            <div class="skill-info">
+              <h3 class="skill-name">Inteligência Artificial</h3>
+              <span class="skill-sub">Produtividade &amp; Aplicações Modernas</span>
+            </div>
+          </div>
+        </li>
+        <!-- 6. Git/GitHub -->
+        <li class="skill-card" data-tilt data-cursor-text="GIT">
+          <div class="skill-card-inner">
+            <span class="skill-number">06</span>
+            <div class="skill-info">
+              <h3 class="skill-name">Git/GitHub</h3>
+              <span class="skill-sub">Controle de Versão &amp; Deploy</span>
+            </div>
+          </div>
+        </li>
+        <!-- 7. Pacote Office -->
+        <li class="skill-card" data-tilt data-cursor-text="OFFICE">
+          <div class="skill-card-inner">
+            <span class="skill-number">07</span>
+            <div class="skill-info">
+              <h3 class="skill-name">Pacote Office</h3>
+              <span class="skill-sub">Produtividade &amp; Documentação</span>
+            </div>
+          </div>
+        </li>
       </ul>
     </section>
 
   </main>
 
-  <!--RODAPÉ-->
-  <footer class="footer">
-    <a href="mailto:lnando.costa2009@gmail.com" class="footer__cta">Vamos conversar? Envie um email</a>
+  <!-- RODAPÉ & CONTATO FINAL -->
+  <footer class="footer" id="contato">
+    <div class="footer-bg-monogram" aria-hidden="true">LF</div>
 
-    <!-- Botão "voltar ao topo" -->
-    <button id="btnTopo" class="back-to-top" aria-label="Voltar ao topo">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 19V5M5 12l7-7 7 7"/></svg>
+    <div class="footer-inner">
+      <div class="footer-header">
+        <span class="footer-eyebrow">// VAMOS CONECTAR?</span>
+        <h2 class="footer-title">Pronto para novos desafios e aprendizados.</h2>
+      </div>
+
+      <!-- Chamada de contato original preservada -->
+      <a href="mailto:lnando.costa2009@gmail.com" class="footer__cta" data-cursor-text="CONVERSAR">
+        <span>Vamos conversar? Envie um email</span>
+        <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+
+      <!-- Redes sociais e e-mail -->
+      <div class="footer-social-row">
+        <a href="mailto:lnando.costa2009@gmail.com" class="footer-social-link">
+          <span class="social-prefix">EMAIL //</span> lnando.costa2009@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/luiz-fernando-costa-449b37366/" target="_blank" rel="noopener" class="footer-social-link">
+          <span class="social-prefix">IN //</span> Luiz Fernando Costa
+        </a>
+        <a href="https://github.com/lnandocosta2009-ctrl" target="_blank" rel="noopener" class="footer-social-link">
+          <span class="social-prefix">GH //</span> lnandocosta2009-ctrl
+        </a>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">
+          &copy; <span id="currentYear">2026</span> Luiz Fernando de Oliveira Costa · Todos os direitos reservados.
+        </p>
+        <span class="footer-tech-tag">BUILD // HTML5 · VANILLA CSS · MODERN JS</span>
+      </div>
+    </div>
+
+    <!-- Botão "voltar ao topo" preservado com ID original -->
+    <button id="btnTopo" class="back-to-top" aria-label="Voltar ao topo da página" data-cursor-text="TOPO">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <span class="btn-topo-label">TOPO</span>
     </button>
   </footer>
 
- -->
-  <script src="script.js"></script>
+  <!-- Script principal -->
+  <script src="./script.js"></script>
 </body>
 </html>
