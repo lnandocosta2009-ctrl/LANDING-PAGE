@@ -299,13 +299,21 @@
   function updateSkillsInteractiveScroll() {
     if (!skillsTrack) return;
 
-    if (isReducedMotion) {
+    // Em mobile (≤ 768px) o layout vira lista estática — desativa animações de scroll
+    if (window.innerWidth <= 768 || isReducedMotion) {
       if (skillsNotebookCenter) {
         skillsNotebookCenter.style.transform = '';
         skillsNotebookCenter.style.opacity = '1';
       }
       if (notebookRig) notebookRig.style.transform = '';
       if (notebookShadow) notebookShadow.style.transform = '';
+      // Garante todos os cards visíveis em modo estático
+      skillCards.forEach((card) => {
+        card.style.opacity = '';
+        card.style.transform = '';
+        card.style.visibility = '';
+        card.style.filter = '';
+      });
       return;
     }
 
