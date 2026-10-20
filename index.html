@@ -7,12 +7,12 @@
   <title>Luiz Fernando — Aprendiz Desenvolvedor | Portfólio LF</title>
   <meta name="description" content="Portfólio de Luiz Fernando de Oliveira Costa, aprendiz desenvolvedor. Projetos, trajetória na TI, habilidades e contato.">
   <meta name="author" content="Luiz Fernando de Oliveira Costa">
-  <meta name="theme-color" content="#080B09">
+  <meta name="theme-color" content="#070B08">
 
-  <!-- Fontes do Google Fonts: Syne (display) + Space Grotesk (headings) + Inter (corpo) + JetBrains Mono (código/técnico) -->
+  <!-- Fontes do Google Fonts: Syne (display) + Space Grotesk (headings) + Inter (corpo) + JetBrains Mono (código/técnico) + Sedgwick Ave Display & Permanent Marker (grafite urbano autêntico para iniciais LF) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Permanent+Marker&family=Sedgwick+Ave+Display&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <!-- Arquivo de estilos -->
   <link rel="stylesheet" href="./style.css">
@@ -133,7 +133,7 @@
             <!-- Grafismos técnicos sobre a foto -->
             <div class="photo-corner photo-corner--tl"></div>
             <div class="photo-corner photo-corner--br"></div>
-            <div class="photo-tech-tag">PORTFOLIO // LF</div>
+            <div class="photo-tech-tag">PORTFOLIO // <span class="brand-graffiti-lf">LF</span></div>
           </div>
         </div>
       </div>
@@ -526,90 +526,172 @@
       </div>
     </section>
 
-    <!-- SEÇÃO SKILLS -->
-    <section class="section section--skills reveal" id="skills">
-      <div class="section-badge">
-        <span class="section__eyebrow">05 · skills</span>
-        <span class="badge-line"></span>
-      </div>
+    <!-- SEÇÃO SKILLS COM NOTEBOOK 3D INTERATIVO (Inspirado no igloo.inc) -->
+    <section class="section section--skills" id="skills">
+      <div class="skills-scroll-track" id="skillsTrack">
+        <div class="skills-stage" id="skillsStage">
 
-      <div class="section-title-wrap">
-        <h2 class="section__title">Habilidades &amp; Ferramentas</h2>
-        <p class="section__subtitle">Tecnologias que fazem parte da minha rotina de estudo e desenvolvimento</p>
-      </div>
+          <!-- Cabeçalho da Seção -->
+          <div class="skills-stage-header">
+            <div class="section-badge">
+              <span class="section__eyebrow">05 · skills</span>
+              <span class="badge-line"></span>
+            </div>
+            <div class="section-title-wrap">
+              <h2 class="section__title">Habilidades &amp; Ferramentas</h2>
+              <p class="section__subtitle">Tecnologias que fazem parte da minha rotina de estudo e desenvolvimento</p>
+            </div>
+          </div>
 
-      <ul class="skills-grid" aria-label="Lista de habilidades">
-        <!-- 1. HTML -->
-        <li class="skill-card" data-tilt data-cursor-text="HTML">
-          <div class="skill-card-inner">
-            <span class="skill-number">01</span>
-            <div class="skill-info">
-              <h3 class="skill-name">HTML</h3>
-              <span class="skill-sub">Semântica &amp; Estrutura</span>
+          <!-- Arena interativa com notebook central e cards alternados -->
+          <div class="skills-arena" id="skillsArena">
+
+            <!-- Centro: Notebook 3D com rotação sincronizada com a rolagem -->
+            <div class="skills-notebook-center" id="skillsNotebookCenter">
+              <div class="notebook-perspective-wrap" id="notebookPerspectiveWrap">
+                <div class="notebook-glow-pedestal" aria-hidden="true"></div>
+                <div class="notebook-shadow" id="notebookShadow" aria-hidden="true"></div>
+                <div class="notebook-rig-3d" id="notebookRig">
+                  <img src="./assets/images/notebook-skills.png" 
+                       alt="Notebook 3D com a identidade de Luiz Fernando" 
+                       class="notebook-skills-img" 
+                       id="notebookSkillsImg"
+                       width="540" 
+                       height="470"
+                       loading="eager">
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista de Habilidades Alternadas (01 Esquerda, 02 Direita, 03 Esquerda...) -->
+            <ul class="skills-cards-stage" id="skillsCardsStage" aria-label="Lista interativa de habilidades">
+              <!-- 1. HTML (Esquerda) -->
+              <li class="skill-card skill-card--stage is-active" data-index="0" data-side="left" data-tilt data-cursor-text="HTML">
+                <div class="skill-card-inner">
+                  <span class="skill-number">01</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">HTML</h3>
+                    <span class="skill-sub">Semântica &amp; Estrutura</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">← FOCO // LADO ESQUERDO</span>
+                  <span class="skill-index-pill">01 / 07</span>
+                </div>
+              </li>
+
+              <!-- 2. CSS (Direita) -->
+              <li class="skill-card skill-card--stage" data-index="1" data-side="right" data-tilt data-cursor-text="CSS">
+                <div class="skill-card-inner">
+                  <span class="skill-number">02</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">CSS</h3>
+                    <span class="skill-sub">Layouts, Flex, Grid &amp; Animações</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">FOCO // LADO DIREITO →</span>
+                  <span class="skill-index-pill">02 / 07</span>
+                </div>
+              </li>
+
+              <!-- 3. JavaScript (Esquerda) -->
+              <li class="skill-card skill-card--stage" data-index="2" data-side="left" data-tilt data-cursor-text="JS">
+                <div class="skill-card-inner">
+                  <span class="skill-number">03</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">JavaScript</h3>
+                    <span class="skill-sub">Lógica &amp; Interatividade DOM</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">← FOCO // LADO ESQUERDO</span>
+                  <span class="skill-index-pill">03 / 07</span>
+                </div>
+              </li>
+
+              <!-- 4. Python (Direita) -->
+              <li class="skill-card skill-card--stage" data-index="3" data-side="right" data-tilt data-cursor-text="PYTHON">
+                <div class="skill-card-inner">
+                  <span class="skill-number">04</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">Python</h3>
+                    <span class="skill-sub">Fundamentos &amp; Automação</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">FOCO // LADO DIREITO →</span>
+                  <span class="skill-index-pill">04 / 07</span>
+                </div>
+              </li>
+
+              <!-- 5. Inteligência Artificial (Esquerda) -->
+              <li class="skill-card skill-card--stage" data-index="4" data-side="left" data-tilt data-cursor-text="IA">
+                <div class="skill-card-inner">
+                  <span class="skill-number">05</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">Inteligência Artificial</h3>
+                    <span class="skill-sub">Produtividade &amp; Aplicações Modernas</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">← FOCO // LADO ESQUERDO</span>
+                  <span class="skill-index-pill">05 / 07</span>
+                </div>
+              </li>
+
+              <!-- 6. Git/GitHub (Direita) -->
+              <li class="skill-card skill-card--stage" data-index="5" data-side="right" data-tilt data-cursor-text="GIT">
+                <div class="skill-card-inner">
+                  <span class="skill-number">06</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">Git/GitHub</h3>
+                    <span class="skill-sub">Controle de Versão &amp; Deploy</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">FOCO // LADO DIREITO →</span>
+                  <span class="skill-index-pill">06 / 07</span>
+                </div>
+              </li>
+
+              <!-- 7. Pacote Office (Esquerda) -->
+              <li class="skill-card skill-card--stage" data-index="6" data-side="left" data-tilt data-cursor-text="OFFICE">
+                <div class="skill-card-inner">
+                  <span class="skill-number">07</span>
+                  <div class="skill-info">
+                    <h3 class="skill-name">Pacote Office</h3>
+                    <span class="skill-sub">Produtividade &amp; Documentação</span>
+                  </div>
+                </div>
+                <div class="skill-card-indicator">
+                  <span class="skill-dir-tag">← FOCO // LADO ESQUERDO</span>
+                  <span class="skill-index-pill">07 / 07</span>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Barra de navegação e status das habilidades -->
+          <div class="skills-pagination-bar" aria-label="Navegação das habilidades">
+            <div class="skills-status-indicator">
+              <span class="skills-status-dot"></span>
+              <span class="skills-status-text" id="skillsStatusText">01 // HTML · LADO ESQUERDO</span>
+            </div>
+            <div class="skills-pills" id="skillsPills" role="tablist">
+              <button class="skills-pill is-active" data-index="0" aria-label="Habilidade 01: HTML" role="tab"><span class="pill-dot"></span>01 HTML</button>
+              <button class="skills-pill" data-index="1" aria-label="Habilidade 02: CSS" role="tab"><span class="pill-dot"></span>02 CSS</button>
+              <button class="skills-pill" data-index="2" aria-label="Habilidade 03: JavaScript" role="tab"><span class="pill-dot"></span>03 JS</button>
+              <button class="skills-pill" data-index="3" aria-label="Habilidade 04: Python" role="tab"><span class="pill-dot"></span>04 Python</button>
+              <button class="skills-pill" data-index="4" aria-label="Habilidade 05: Inteligência Artificial" role="tab"><span class="pill-dot"></span>05 IA</button>
+              <button class="skills-pill" data-index="5" aria-label="Habilidade 06: Git/GitHub" role="tab"><span class="pill-dot"></span>06 Git</button>
+              <button class="skills-pill" data-index="6" aria-label="Habilidade 07: Pacote Office" role="tab"><span class="pill-dot"></span>07 Office</button>
             </div>
           </div>
-        </li>
-        <!-- 2. CSS -->
-        <li class="skill-card" data-tilt data-cursor-text="CSS">
-          <div class="skill-card-inner">
-            <span class="skill-number">02</span>
-            <div class="skill-info">
-              <h3 class="skill-name">CSS</h3>
-              <span class="skill-sub">Layouts, Flex, Grid &amp; Animações</span>
-            </div>
-          </div>
-        </li>
-        <!-- 3. JavaScript -->
-        <li class="skill-card" data-tilt data-cursor-text="JS">
-          <div class="skill-card-inner">
-            <span class="skill-number">03</span>
-            <div class="skill-info">
-              <h3 class="skill-name">JavaScript</h3>
-              <span class="skill-sub">Lógica &amp; Interatividade DOM</span>
-            </div>
-          </div>
-        </li>
-        <!-- 4. Python -->
-        <li class="skill-card" data-tilt data-cursor-text="PYTHON">
-          <div class="skill-card-inner">
-            <span class="skill-number">04</span>
-            <div class="skill-info">
-              <h3 class="skill-name">Python</h3>
-              <span class="skill-sub">Fundamentos &amp; Automação</span>
-            </div>
-          </div>
-        </li>
-        <!-- 5. Inteligência Artificial -->
-        <li class="skill-card" data-tilt data-cursor-text="IA">
-          <div class="skill-card-inner">
-            <span class="skill-number">05</span>
-            <div class="skill-info">
-              <h3 class="skill-name">Inteligência Artificial</h3>
-              <span class="skill-sub">Produtividade &amp; Aplicações Modernas</span>
-            </div>
-          </div>
-        </li>
-        <!-- 6. Git/GitHub -->
-        <li class="skill-card" data-tilt data-cursor-text="GIT">
-          <div class="skill-card-inner">
-            <span class="skill-number">06</span>
-            <div class="skill-info">
-              <h3 class="skill-name">Git/GitHub</h3>
-              <span class="skill-sub">Controle de Versão &amp; Deploy</span>
-            </div>
-          </div>
-        </li>
-        <!-- 7. Pacote Office -->
-        <li class="skill-card" data-tilt data-cursor-text="OFFICE">
-          <div class="skill-card-inner">
-            <span class="skill-number">07</span>
-            <div class="skill-info">
-              <h3 class="skill-name">Pacote Office</h3>
-              <span class="skill-sub">Produtividade &amp; Documentação</span>
-            </div>
-          </div>
-        </li>
-      </ul>
+
+        </div>
+      </div>
     </section>
 
   </main>

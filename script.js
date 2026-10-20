@@ -274,6 +274,135 @@
   }
 
   // ==============================================================
+  // 6.5. NOTEBOOK INTERATIVO COM ROTAÇÃO 3D SINCRONIZADA (Skills)
+  // ==============================================================
+  const skillsTrack = document.getElementById('skillsTrack');
+  const skillsNotebookCenter = document.getElementById('skillsNotebookCenter');
+  const notebookRig = document.getElementById('notebookRig');
+  const notebookShadow = document.getElementById('notebookShadow');
+  const skillCards = document.querySelectorAll('.skill-card--stage');
+  const skillPills = document.querySelectorAll('.skills-pill');
+  const skillsStatusText = document.getElementById('skillsStatusText');
+
+  const skillData = [
+    { name: 'HTML', side: 'left', label: '01 // HTML · LADO ESQUERDO' },
+    { name: 'CSS', side: 'right', label: '02 // CSS · LADO DIREITO' },
+    { name: 'JavaScript', side: 'left', label: '03 // JAVASCRIPT · LADO ESQUERDO' },
+    { name: 'Python', side: 'right', label: '04 // PYTHON · LADO DIREITO' },
+    { name: 'Inteligência Artificial', side: 'left', label: '05 // INTELIGÊNCIA ARTIFICIAL · LADO ESQUERDO' },
+    { name: 'Git/GitHub', side: 'right', label: '06 // GIT/GITHUB · LADO DIREITO' },
+    { name: 'Pacote Office', side: 'left', label: '07 // PACOTE OFFICE · LADO ESQUERDO' }
+  ];
+
+  let currentActiveSkillIndex = -1;
+
+  function updateSkillsInteractiveScroll() {
+    if (!skillsTrack) return;
+
+    if (isReducedMotion) {
+      if (skillsNotebookCenter) {
+        skillsNotebookCenter.style.transform = '';
+        skillsNotebookCenter.style.opacity = '1';
+      }
+      if (notebookRig) notebookRig.style.transform = '';
+      if (notebookShadow) notebookShadow.style.transform = '';
+      return;
+    }
+
+    const rect = skillsTrack.getBoundingClientRect();
+    const totalScrollable = skillsTrack.offsetHeight - window.innerHeight;
+    if (totalScrollable <= 0) return;
+
+    // Progresso relativo da seção (0 = topo da seção entra no topo da tela, 1 = término)
+    const currentScroll = -rect.top;
+    const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+
+    // 1. Entrada suave pela parte superior da tela ao chegar na seção de Skills
+    // O notebook desce suavemente e para no centro visual da seção
+    const entryRange = window.innerHeight * 0.75;
+    const distanceToTop = window.innerHeight - rect.top;
+    let entryProgress = Math.max(0, Math.min(1, distanceToTop / entryRange));
+
+    if (skillsNotebookCenter) {
+      if (progress <= 0) {
+        const translateY = (1 - entryProgress) * -140;
+        const entryScale = 0.88 + 0.12 * entryProgress;
+        const entryOpacity = Math.max(0.05, entryProgress);
+        skillsNotebookCenter.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${entryScale.toFixed(3)})`;
+        skillsNotebookCenter.style.opacity = entryOpacity.toFixed(2);
+      } else {
+        skillsNotebookCenter.style.transform = 'translateY(0px) scale(1)';
+        skillsNotebookCenter.style.opacity = '1';
+      }
+    }
+
+    // 2. Rotação progressiva, suave e sincronizada com a rolagem
+    // Conforme a página desce, o notebook gira acompanhando as habilidades (01 esquerda -> 02 direita -> 03 esquerda...)
+    const numSkills = skillCards.length || 7;
+    const continuousStep = progress * (numSkills - 1);
+    const activeIndex = Math.min(numSkills - 1, Math.max(0, Math.round(continuousStep)));
+
+    // Interpolação suave e contínua dos ângulos de rotação Y (Hermite/smoothstep)
+    const baseIdx = Math.min(numSkills - 2, Math.max(0, Math.floor(continuousStep)));
+    const fraction = continuousStep - baseIdx;
+    const smoothT = fraction * fraction * (3 - 2 * fraction);
+
+    // Ângulos de rotação Y: Lado esquerdo (-15deg) vs Lado direito (+15deg)
+    const sideAngle = (idx) => (idx % 2 === 0 ? -15 : 15);
+    const angleStart = sideAngle(baseIdx);
+    const angleEnd = sideAngle(baseIdx + 1);
+    const currentRotateY = angleStart + (angleEnd - angleStart) * smoothT;
+
+    // Tilt sutil em X e Z para sensação tridimensional refinada sem deformação
+    const currentTiltX = 4 + Math.sin(smoothT * Math.PI) * 1.8;
+    const currentTiltZ = (currentRotateY / 15) * 1.2;
+    const currentTranslateX = (currentRotateY / 15) * 14;
+
+    if (notebookRig) {
+      notebookRig.style.transform = `perspective(1200px) rotateY(${currentRotateY.toFixed(2)}deg) rotateX(${currentTiltX.toFixed(2)}deg) rotateZ(${currentTiltZ.toFixed(2)}deg) translateX(${currentTranslateX.toFixed(2)}px)`;
+    }
+
+    if (notebookShadow) {
+      notebookShadow.style.transform = `translateX(calc(-50% - ${(currentTranslateX * 0.7).toFixed(1)}px)) scaleX(${(1 - Math.abs(currentRotateY) * 0.005).toFixed(3)})`;
+    }
+
+    // 3. Apresentação das habilidades uma de cada vez com transição cinematográfica
+    if (activeIndex !== currentActiveSkillIndex) {
+      currentActiveSkillIndex = activeIndex;
+
+      skillCards.forEach((card, idx) => {
+        card.classList.toggle('is-active', idx === activeIndex);
+      });
+
+      skillPills.forEach((pill, idx) => {
+        pill.classList.toggle('is-active', idx === activeIndex);
+        pill.setAttribute('aria-selected', idx === activeIndex ? 'true' : 'false');
+      });
+
+      if (skillsStatusText && skillData[activeIndex]) {
+        skillsStatusText.textContent = skillData[activeIndex].label;
+      }
+    }
+  }
+
+  // Cliques nas pílulas de navegação direta de habilidades
+  if (skillPills.length && skillsTrack) {
+    skillPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const targetIdx = parseInt(pill.getAttribute('data-index'), 10);
+        if (isNaN(targetIdx)) return;
+        const totalScrollable = skillsTrack.offsetHeight - window.innerHeight;
+        const trackTop = skillsTrack.getBoundingClientRect().top + window.scrollY;
+        const targetScroll = trackTop + (targetIdx / (skillCards.length - 1)) * totalScrollable;
+        window.scrollTo({
+          top: targetScroll,
+          behavior: isReducedMotion ? 'auto' : 'smooth'
+        });
+      });
+    });
+  }
+
+  // ==============================================================
   // 7. BOTÃO "VOLTAR AO TOPO" (Preservado)
   // ==============================================================
   const btnTopo = document.getElementById('btnTopo');
@@ -315,6 +444,7 @@
     updateDynamicBackground(globalProgress);
     updateCinematicProjects();
     updateTimelineProgress();
+    updateSkillsInteractiveScroll();
     updateActiveNav();
 
     isScrolling = false;

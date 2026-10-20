@@ -1,35 +1,45 @@
 /* ==============================================================
    PORTFÓLIO LUIZ FERNANDO (LF) — SISTEMA DE DESIGN & ESTILOS
-   Paleta: Verde e Preto (#080B09, #101713, #123D2B, #168653, #50E3A4)
-   Inspirado em: Belgrade Arbor, Cartier Le Choeur des Pierres, Lando Norris
+   Paleta: Tons de Verde Profissionais (Floresta, Musgo, Esmeralda Discreto)
+   Tipografia: Grafite Urbano para Iniciais LF + Syne + Space Grotesk + Inter
+   Inspirado em: Belgrade Arbor, Cartier, Lando Norris, Igloo.inc
 ================================================================= */
 
 :root {
-  /* Paleta cromática oficial */
-  --bg-deep: #080B09;
-  --bg-surface: #101713;
-  --bg-surface-elevated: #151F1A;
-  --bg-surface-glass: rgba(16, 23, 19, 0.75);
+  /* Paleta cromática oficial refinada e profissional */
+  --bg-deep: #070B08;                /* Fundo escuro com sutil matiz floresta orgânico */
+  --bg-surface: #0E1611;             /* Superfície verde-musgo escura */
+  --bg-surface-elevated: #142019;    /* Superfície elevada para cards e painéis */
+  --bg-surface-glass: rgba(14, 22, 17, 0.82);
 
-  --accent-dark: #123D2B;
-  --accent-emerald: #168653;
-  --accent-neon: #50E3A4;
-  --accent-neon-glow: rgba(80, 227, 164, 0.28);
-  --accent-emerald-glow: rgba(22, 134, 83, 0.35);
+  /* Tons de Verde: Floresta, Musgo, Esmeralda Discreto e Destaque Natural */
+  --accent-dark: #0D2418;            /* Verde floresta profundo */
+  --accent-forest: #1A3E2C;          /* Verde floresta rico */
+  --accent-moss: #2E5C44;            /* Verde musgo elegante */
+  --accent-emerald: #2E8B57;         /* Verde esmeralda clássico e discreto */
+  --accent-highlight: #42B37B;       /* Destaque sálvia/esmeralda natural (sem neon artificial) */
+  --accent-highlight-soft: #63C896;  /* Toque suave para pequenos acentos */
 
-  --text-primary: #F2F5F2;
-  --text-secondary: #A2ACA5;
-  --text-muted: #647068;
+  /* Aliases para compatibilidade total com os seletores existentes */
+  --accent-neon: var(--accent-highlight);
+  --accent-neon-glow: rgba(66, 179, 123, 0.16);
+  --accent-emerald-glow: rgba(46, 139, 87, 0.18);
+  --accent-forest-glow: rgba(26, 62, 44, 0.22);
 
-  --border-subtle: rgba(80, 227, 164, 0.12);
-  --border-glass: rgba(242, 245, 242, 0.08);
-  --border-active: rgba(80, 227, 164, 0.45);
+  --text-primary: #F0F4F1;
+  --text-secondary: #9EAEA3;
+  --text-muted: #627267;
 
-  /* Tipografia moderna */
+  --border-subtle: rgba(66, 179, 123, 0.12);
+  --border-glass: rgba(240, 244, 241, 0.07);
+  --border-active: rgba(66, 179, 123, 0.36);
+
+  /* Tipografia moderna e autêntica */
   --font-display: 'Syne', sans-serif;
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-code: 'JetBrains Mono', monospace;
+  --font-graffiti: 'Sedgwick Ave Display', 'Permanent Marker', cursive, sans-serif;
 
   /* Transições suaves */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -245,7 +255,7 @@ button:focus-visible {
   max-height: 650px;
   top: 40%;
   right: -10%;
-  background: radial-gradient(circle, var(--accent-emerald-glow) 0%, rgba(22, 134, 83, 0.2) 45%, transparent 75%);
+  background: radial-gradient(circle, var(--accent-emerald-glow) 0%, rgba(46, 139, 87, 0.14) 45%, transparent 75%);
 }
 
 .ambient-glow--3 {
@@ -255,16 +265,16 @@ button:focus-visible {
   max-height: 700px;
   bottom: -10%;
   left: 20%;
-  background: radial-gradient(circle, rgba(80, 227, 164, 0.12) 0%, rgba(16, 23, 19, 0.8) 50%, transparent 80%);
+  background: radial-gradient(circle, var(--accent-forest-glow) 0%, var(--bg-surface) 50%, transparent 80%);
 }
 
 .ambient-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(80, 227, 164, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
   background-size: 36px 36px;
   mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.3) 80%);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .ambient-noise {
@@ -326,13 +336,13 @@ button:focus-visible {
 }
 
 .intro-monogram {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(6rem, 18vw, 12rem);
-  letter-spacing: -4px;
-  line-height: 0.9;
+  font-family: var(--font-graffiti);
+  font-weight: 400;
+  font-size: clamp(6.5rem, 19vw, 13rem);
+  letter-spacing: 2px;
+  line-height: 0.95;
   color: var(--text-primary);
-  text-shadow: 0 0 30px var(--accent-neon-glow);
+  text-shadow: 0 0 24px var(--accent-neon-glow), 0 4px 12px rgba(0, 0, 0, 0.7);
   position: relative;
   user-select: none;
 }
@@ -343,17 +353,17 @@ button:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(6rem, 18vw, 12rem);
-  letter-spacing: -4px;
-  line-height: 0.9;
+  font-family: var(--font-graffiti);
+  font-weight: 400;
+  font-size: clamp(6.5rem, 19vw, 13rem);
+  letter-spacing: 2px;
+  line-height: 0.95;
   pointer-events: none;
   opacity: 0;
 }
 
 .intro-glitch--1 {
-  color: var(--accent-neon);
+  color: var(--accent-highlight);
   transform: translate(-2px, -1px);
   animation: glitchAnim1 2s infinite ease-in-out;
 }
@@ -489,16 +499,27 @@ button:focus-visible {
 }
 
 .brand-monogram {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 24px;
-  letter-spacing: -1px;
+  font-family: var(--font-graffiti);
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: 1px;
   color: var(--text-primary);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-block;
 }
 
 .brand-logo:hover .brand-monogram {
-  color: var(--accent-neon);
+  color: var(--accent-highlight);
+  transform: scale(1.06);
+}
+
+.brand-graffiti-lf {
+  font-family: var(--font-graffiti);
+  letter-spacing: 1px;
+  font-size: 1.15em;
+  color: var(--text-primary);
+  display: inline-block;
+  vertical-align: baseline;
 }
 
 .brand-pulse {
@@ -1633,29 +1654,208 @@ main {
 }
 
 /* ==============================================================
-   SEÇÃO 05: SKILLS
+   SEÇÃO 05: SKILLS INTERATIVA COM NOTEBOOK 3D & SCROLL SYNC
 ================================================================= */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+.section--skills {
+  position: relative;
+  padding: 0;
+}
+
+/* Trilho de rolagem para controlar a experiência sticky e sincronização */
+.skills-scroll-track {
+  position: relative;
+  height: 480vh;
+}
+
+/* Palco fixo na tela durante a rolagem da seção de skills */
+.skills-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 24px 30px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho centralizado no topo do palco */
+.skills-stage-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.skills-stage-header .section-badge {
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.skills-stage-header .section__title {
+  margin-bottom: 6px;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+}
+
+.skills-stage-header .section__subtitle {
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+}
+
+/* Arena interativa com o notebook no centro e cards nas laterais */
+.skills-arena {
+  width: 100%;
+  max-width: 1240px;
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+/* Centro: Notebook 3D */
+.skills-notebook-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+  transition: transform 0.15s ease-out, opacity 0.2s ease-out;
+}
+
+.notebook-perspective-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+/* Rig 3D com rotação controlada */
+.notebook-rig-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s linear;
+}
+
+/* Imagem original do notebook fornecida pelo usuário */
+.notebook-skills-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Pedestal com iluminação verde floresta e esmeralda sob o notebook */
+.notebook-glow-pedestal {
+  position: absolute;
+  width: 440px;
+  height: 180px;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(66, 179, 123, 0.22) 0%, rgba(26, 62, 44, 0.14) 50%, transparent 75%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sombra 3D suave no piso */
+.notebook-shadow {
+  position: absolute;
+  width: 380px;
+  height: 38px;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.1s linear;
+}
+
+/* Lista de Habilidades na Stage */
+.skills-cards-stage {
+  position: absolute;
+  inset: 0;
   list-style: none;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
 }
 
 .skill-card {
-  background: var(--bg-surface);
+  background: var(--bg-surface-elevated);
   border: 1px solid var(--border-glass);
-  border-radius: 16px;
-  padding: 24px 20px;
+  border-radius: 18px;
+  padding: 22px 20px;
   position: relative;
   overflow: hidden;
   transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
 }
 
-.skill-card:hover {
-  border-color: var(--accent-neon);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(80, 227, 164, 0.12);
+/* Cards alternados animados */
+.skill-card--stage {
+  position: absolute;
+  top: 50%;
+  width: 330px;
+  max-width: calc(50vw - 260px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(8px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out), filter 0.4s var(--ease-out), border-color 0.35s ease, box-shadow 0.35s ease, visibility 0.4s;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 5;
+}
+
+/* Posições alternadas: Esquerda vs Direita */
+.skill-card--stage[data-side="left"] {
+  left: 24px;
+  transform: translateY(-50%) translateX(-45px) scale(0.95);
+}
+
+.skill-card--stage[data-side="right"] {
+  right: 24px;
+  transform: translateY(-50%) translateX(45px) scale(0.95);
+}
+
+/* Card ativo: entra e foca suavemente */
+.skill-card--stage.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0);
+  border-color: var(--accent-highlight);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px var(--accent-neon-glow);
+  z-index: 10;
+}
+
+.skill-card--stage[data-side="left"].is-active {
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.skill-card--stage[data-side="right"].is-active {
+  transform: translateY(-50%) translateX(0) scale(1);
 }
 
 .skill-card-inner {
@@ -1670,15 +1870,16 @@ main {
   font-weight: 600;
   color: var(--accent-emerald);
   padding: 8px 12px;
-  background: rgba(22, 134, 83, 0.12);
+  background: rgba(46, 139, 87, 0.12);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.skill-card:hover .skill-number {
-  color: var(--accent-neon);
-  border-color: var(--accent-neon);
+.skill-card:hover .skill-number,
+.skill-card--stage.is-active .skill-number {
+  color: var(--accent-highlight);
+  border-color: var(--accent-highlight);
 }
 
 .skill-info {
@@ -1699,6 +1900,109 @@ main {
   color: var(--text-muted);
 }
 
+.skill-card-indicator {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skill-dir-tag {
+  font-family: var(--font-code);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-highlight);
+  font-weight: 500;
+}
+
+.skill-index-pill {
+  font-family: var(--font-code);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Barra de paginação interativa */
+.skills-pagination-bar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skills-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.skills-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-highlight);
+  box-shadow: 0 0 10px var(--accent-highlight);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.skills-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skills-pill {
+  font-family: var(--font-code);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-glass);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.skills-pill .pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  transition: background-color var(--transition-fast);
+}
+
+.skills-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  background: var(--bg-surface-elevated);
+}
+
+.skills-pill.is-active {
+  color: var(--text-primary);
+  background: rgba(66, 179, 123, 0.14);
+  border-color: var(--accent-highlight);
+  box-shadow: 0 0 12px var(--accent-neon-glow);
+}
+
+.skills-pill.is-active .pill-dot {
+  background-color: var(--accent-highlight);
+  box-shadow: 0 0 6px var(--accent-highlight);
+}
+
 /* ==============================================================
    RODAPÉ & CONTATO FINAL
 ================================================================= */
@@ -1716,13 +2020,13 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-weight: 800;
+  font-family: var(--font-graffiti);
+  font-weight: 400;
   font-size: clamp(14rem, 30vw, 24rem);
-  color: rgba(80, 227, 164, 0.02);
+  color: rgba(66, 179, 123, 0.035);
   user-select: none;
   pointer-events: none;
-  letter-spacing: -10px;
+  letter-spacing: 6px;
 }
 
 .footer-inner {
@@ -1937,6 +2241,65 @@ main {
     left: 9px !important;
     right: auto !important;
   }
+
+  /* Responsividade da seção de Skills com notebook e cards alternados */
+  .skills-scroll-track {
+    height: 400vh;
+  }
+
+  .skills-stage {
+    padding: 70px 16px 20px;
+  }
+
+  .skills-arena {
+    height: 380px;
+    margin: 10px 0;
+  }
+
+  .skills-notebook-center {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 230px;
+  }
+
+  .notebook-skills-img {
+    max-width: 290px;
+    max-height: 200px;
+  }
+
+  .notebook-glow-pedestal {
+    width: 250px;
+    height: 100px;
+    bottom: -10px;
+  }
+
+  .notebook-shadow {
+    width: 220px;
+    height: 22px;
+    bottom: -5px;
+  }
+
+  .skill-card--stage {
+    top: auto;
+    bottom: 0;
+    left: 50% !important;
+    right: auto !important;
+    width: 92%;
+    max-width: 360px;
+    padding: 16px 16px;
+    transform: translateX(-50%) translateY(20px) scale(0.96) !important;
+  }
+
+  .skill-card--stage.is-active {
+    transform: translateX(-50%) translateY(0) scale(1) !important;
+  }
+
+  .skills-pills {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2016,6 +2379,34 @@ main {
   }
 }
 
+@media (max-width: 540px) {
+  .notebook-skills-img {
+    max-width: 250px;
+    max-height: 175px;
+  }
+
+  .skill-card--stage {
+    padding: 14px 14px;
+  }
+
+  .skill-number {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .skill-name {
+    font-size: 15px;
+  }
+
+  .skill-sub {
+    font-size: 11px;
+  }
+
+  .skills-stage-header .section__title {
+    font-size: 1.6rem;
+  }
+}
+
 /* ==============================================================
    ACESSIBILIDADE: PREFERS-REDUCED-MOTION
 ================================================================= */
@@ -2046,5 +2437,45 @@ main {
     transform: none !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+  }
+
+  .skills-scroll-track {
+    height: auto !important;
+  }
+
+  .skills-stage {
+    position: static !important;
+    height: auto !important;
+    padding: 40px 24px !important;
+  }
+
+  .skills-arena {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 30px !important;
+  }
+
+  .skills-cards-stage {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .skill-card--stage {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .notebook-rig-3d {
+    transform: none !important;
   }
 }
